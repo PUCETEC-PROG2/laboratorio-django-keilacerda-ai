@@ -1,0 +1,6 @@
+[
+  {
+    "type": "sqlite",
+    "path": "d:\\laboratorio-django-keilacerda-ai\\db.sqlite3"
+  }
+]

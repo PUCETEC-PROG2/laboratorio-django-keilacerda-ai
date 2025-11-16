@@ -1,3 +1,21 @@
 from django.db import models
 
 # Create your models here.
+class Pokemon(models.Model):
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=50)
+    level = models.IntegerField()
+    weight = models.FloatField()
+
+    def __str__(self):
+        return self.name
+
+class Trainer(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    birth_date = models.DateField()
+    level = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+

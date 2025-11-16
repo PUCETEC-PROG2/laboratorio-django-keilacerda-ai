@@ -1,14 +1,30 @@
 from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render
+from .models import Pokemon
+from .models import Trainer
 
 def index(request):
-    pokemons = ['charmander', 'pikachu', 'squirtle']
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render({'pokemons': pokemons}, request))
+    pokemons = ['Pikachu', 'Charmander', 'Bulbasaur', 'Squirtle', 'Charizard']
+    return render(request, 'index.html', {
+    'pokemons': pokemons
+})
 
-def pokemon(request, pokemon):
-    template = loader.get_template('display_pokemon.html')
-    context = {
+
+def pokemon_details(request, pokemon):
+    return render(request, 'pokemon_details.html', {
         'pokemon': pokemon
-    }
-    return HttpResponse(template.render(context, request))
+    })
+
+
+def trainer_list(request):
+    trainers = Trainer.objects.all()
+    return render(request, 'trainer_list.html', {
+        'trainers': trainers
+    })
+
+def trainer_details(request, trainer_id):
+    trainer = Trainer.objects.get(id=trainer_id)
+    return render(request, 'trainer_details.html', {
+        'trainer': trainer
+    })
+

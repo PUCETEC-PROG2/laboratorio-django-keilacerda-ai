@@ -1,0 +1,14 @@
+<h1>Lista de Entrenadores</h1>
+
+<ul>
+    {% for t in trainers %}
+        <li>
+            <a href="{% url 'trainer_details' t.id %}">
+                {{ t.first_name }} {{ t.last_name }}
+            </a>
+        </li>
+    {% empty %}
+        <li>No hay entrenadores todavía</li>
+    {% endfor %}
+</ul>
+
