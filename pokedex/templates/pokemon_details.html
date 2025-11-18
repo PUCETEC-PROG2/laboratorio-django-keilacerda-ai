@@ -7,14 +7,18 @@
     <body>
         <div class="container">
             <div class="bg-primary text-white p-4 text-center">
-                <h1>Mi Pokedex</h1>
             </div>
+            <h1 class="text-center mt-4">{{ pokemon.name }}</h1>
+            <hr class="border border-primary border-2 opacity-100 w-75 mx-auto">
+             <p class="fs-5 text-center">
             <p>Has elegido el pokemon: <strong>{{ pokemon.name }}</strong></p>
             <h3>Características</h3>
             <ul>
                 <li>Tipo: {{pokemon.type}}</li>
                 <li>Peso: {{pokemon.weight}}</li>
                 <li>Altura: {{pokemon.height}}</li>
+                <li>Entrenador: {{ pokemon.trainer }}</li>
+
             </ul>
             {% if pokemon.picture %}
                 <img src="{{ pokemon.picture.url }}" width="200">
