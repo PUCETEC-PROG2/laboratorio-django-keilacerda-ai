@@ -15,13 +15,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
-from . import settings
 from django.urls import path, include
+from . import settings
+from oauth2_provider import urls as oauth2_urls
+from lab8 import settings
+from pokedex import views
+
 
 urlpatterns = [
+    path('', include('pokedex.urls')),
     path('admin/', admin.site.urls),
-    path('', include('pokedex.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('o/', include(oauth2_urls)),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('login/', views.CustomLoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
